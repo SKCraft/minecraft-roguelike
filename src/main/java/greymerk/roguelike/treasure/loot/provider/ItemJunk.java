@@ -17,6 +17,11 @@ public class ItemJunk extends ItemBase{
 
 	@Override
 	public ItemStack getLootItem(Random rand, int level){
+		ItemStack override = getChestGenItem("junk", level, rand);
+		if (override != null) {
+			return override;
+		}
+
 		if(rand.nextInt(500) == 0){
 			if(rand.nextBoolean()) return ItemNovelty.getItem(ItemNovelty.VECHS);
 
@@ -38,7 +43,7 @@ public class ItemJunk extends ItemBase{
 
 		if(level > 1 && rand.nextInt(100) == 0) return new ItemStack(Items.ghast_tear);
 
-		if(level > 1 && rand.nextInt(50) == 0){			
+		if(level > 1 && rand.nextInt(50) == 0){
 			switch(rand.nextInt(6)){
 			case 0: return new ItemStack(Items.gunpowder, 1 + rand.nextInt(3));
 			case 1: return new ItemStack(Items.blaze_powder, 1 + rand.nextInt(3));
@@ -52,7 +57,7 @@ public class ItemJunk extends ItemBase{
 		if(level < 3 && rand.nextInt(10 + ((1 + level) * 5)) == 0) return new ItemStack(Items.book);
 
 		if(level > 0 && rand.nextInt(20 / (1 + level)) == 0){
-			
+
 			if(level == 4 && rand.nextInt(10) == 0){
 				ChestGenHooks hook = rand.nextBoolean() ?
 						ChestGenHooks.getInfo(ChestGenHooks.PYRAMID_JUNGLE_CHEST):
@@ -60,7 +65,7 @@ public class ItemJunk extends ItemBase{
 				ItemStack toReturn = hook.getOneItem(rand);
 				if(toReturn != null) return toReturn;
 			}
-			
+
 			ChestGenHooks hook = ChestGenHooks.getInfo(ChestGenHooks.DUNGEON_CHEST);
 			ItemStack toReturn = hook.getOneItem(rand);
 			if(toReturn != null) return toReturn;
@@ -68,9 +73,9 @@ public class ItemJunk extends ItemBase{
 
 		if(rand.nextInt(60) == 0){
 			if(level > 2 && rand.nextBoolean()) return PotionMixture.getPotion(rand, PotionMixture.VILE);
-			return PotionMixture.getPotion(rand, PotionMixture.LAUDANUM);	
+			return PotionMixture.getPotion(rand, PotionMixture.LAUDANUM);
 		}
-		
+
 		if(rand.nextInt(20) == 0){
 			return new ItemStack(Blocks.torch, 3 + rand.nextInt(3 + level));
 		}

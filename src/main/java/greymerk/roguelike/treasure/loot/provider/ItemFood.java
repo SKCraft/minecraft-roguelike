@@ -17,7 +17,11 @@ public class ItemFood extends ItemBase{
 	}		
 	
 	public static ItemStack getRandom(Random rand, int rank){
-		
+		ItemStack override = getChestGenItem("food", rank, rand);
+		if (override != null) {
+			return override;
+		}
+
 		ItemNovelty[] items = {
 				ItemNovelty.GINGER,
 				ItemNovelty.CLEO

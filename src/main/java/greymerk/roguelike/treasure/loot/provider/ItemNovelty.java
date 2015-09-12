@@ -12,13 +12,18 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 public enum ItemNovelty {
 
 	GREYMERK, ANDERZEL, NEBRISCROWN, NEBRISSWORD, ZISTEAUPANTS, ZISTEAUSIGN, AVIDYA, ASHLEA, KURT, AMLP,
 	CLEO, ENIKOSWORD, ENIKOBOW, BDOUBLEO, GUUDE, RLEAHY, ETHO, BAJ, DOCM, GINGER, VECHS,
 	NOTCH, JOHNNYRAGGOT, QUANTUMLEAP, MCGAMER, GENERIKB, PAUSE, PAULSOARESJR, FOURLES,
 	DINNERBONE, GRIM, MMILLSS, MILLBEE, VINTAGEBEEF, VALANDRAH;
-		
+
+	private static final Random rand = new Random();
 	public static final Map<String, ItemNovelty> names;
 	static {
 		names = new HashMap<String, ItemNovelty>();
@@ -64,7 +69,11 @@ public enum ItemNovelty {
 	}
 	
 	public static ItemStack getItem(ItemNovelty choice){
-		
+		ItemStack override = ItemBase.getChestGenItem("novelty", 4, rand);
+		if (override != null) {
+			return override;
+		}
+
 		ItemStack item;
 		
 		switch(choice){

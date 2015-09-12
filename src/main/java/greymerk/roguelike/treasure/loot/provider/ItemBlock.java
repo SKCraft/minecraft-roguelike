@@ -30,6 +30,10 @@ public class ItemBlock extends ItemBase{
 	}
 	
 	private static ItemStack pickBlocks(Random rand, int level) {
+		ItemStack override = getChestGenItem("block", level, rand);
+		if (override != null) {
+			return override;
+		}
 
 		int size = rand.nextInt(24) + 8;
 		

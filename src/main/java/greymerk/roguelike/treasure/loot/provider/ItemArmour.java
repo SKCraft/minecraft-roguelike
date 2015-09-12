@@ -33,6 +33,10 @@ public class ItemArmour extends ItemBase {
 	}
 	
 	public static ItemStack getRandom(Random rand, int level, Slot slot, int enchantLevel){
+		ItemStack override = getChestGenItem("armour", level, rand);
+		if (override != null) {
+			return override;
+		}
 
 		if(enchantLevel > 0 && rand.nextInt(20 + (level * 10)) == 0){
 			switch(slot){

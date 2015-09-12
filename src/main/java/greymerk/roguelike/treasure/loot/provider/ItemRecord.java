@@ -1,6 +1,7 @@
 package greymerk.roguelike.treasure.loot.provider;
 
 import greymerk.roguelike.treasure.loot.Record;
+import net.minecraft.item.ItemStack;
 
 import java.util.Random;
 
@@ -14,6 +15,10 @@ public class ItemRecord extends ItemBase{
 
 	@Override
 	public ItemStack getLootItem(Random rand, int level) {
+		ItemStack override = getChestGenItem("record", level, rand);
+		if (override != null) {
+			return override;
+		}
 		return Record.getRandomRecord(rand);
 	}
 	

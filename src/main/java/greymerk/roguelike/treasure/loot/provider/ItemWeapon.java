@@ -30,6 +30,10 @@ public class ItemWeapon extends ItemBase{
 	}
 	
 	public static ItemStack getBow(Random rand, int level, boolean enchant){
+		ItemStack override = getChestGenItem("bow", level, rand);
+		if (override != null) {
+			return override;
+		}
 		
 		if(rand.nextInt(20 + (level * 10)) == 0){
 			return ItemSpecialty.getRandomItem(Equipment.BOW, rand, level);
@@ -46,6 +50,11 @@ public class ItemWeapon extends ItemBase{
 	}
 	
 	public static ItemStack getSword(Random rand, int level, boolean enchant){
+		ItemStack override = getChestGenItem("sword", level, rand);
+		if (override != null) {
+			return override;
+		}
+
 		ItemStack sword;
 		
 		if(enchant && rand.nextInt(10 + (level * 10)) == 0){

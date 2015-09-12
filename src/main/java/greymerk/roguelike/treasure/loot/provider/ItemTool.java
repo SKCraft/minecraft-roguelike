@@ -22,11 +22,15 @@ public class ItemTool extends ItemBase {
 	}
 
 	public static ItemStack getRandom(Random rand, int level, boolean enchant){
-		
+		ItemStack override = getChestGenItem("tool", level, rand);
+		if (override != null) {
+			return override;
+		}
+
 		if(level > 1 && rand.nextInt(500) == 0){
 			return ItemNovelty.getItem(ItemNovelty.AMLP);
 		}
-		
+
 		if(enchant && rand.nextInt(20 + (level * 10)) == 0){
 			switch(rand.nextInt(3)){
 			case 0: return ItemSpecialty.getRandomItem(Equipment.PICK, rand, level);
@@ -34,13 +38,13 @@ public class ItemTool extends ItemBase {
 			case 2: return ItemSpecialty.getRandomItem(Equipment.SHOVEL, rand, level);
 			}
 		}
-		
+
 		ItemStack tool = pickTool(rand, level);
-		
+
 		if(enchant && rand.nextInt(6 - level) == 0){
 			Loot.enchantItem(tool, rand, Loot.getEnchantLevel(rand, level));
 		}
-		
+
 		return tool;
 	}
 	

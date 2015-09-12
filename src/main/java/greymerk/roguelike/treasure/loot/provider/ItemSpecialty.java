@@ -27,6 +27,10 @@ public class ItemSpecialty extends ItemBase {
 	}
 	
 	public static ItemStack getRandomItem(Equipment type, Random rand, Quality quality){
+		ItemStack override = getChestGenItem("specialty", quality.ordinal(), rand);
+		if (override != null) {
+			return override;
+		}
 		
 		switch(type){
 		

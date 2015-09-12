@@ -14,6 +14,10 @@ public class ItemSupply extends ItemBase{
 
 	@Override
 	public ItemStack getLootItem(Random rand, int level) {
+		ItemStack override = getChestGenItem("supply", level, rand);
+		if (override != null) {
+			return override;
+		}
 		
 		if(rand.nextInt(20) == 0) return new ItemStack(Items.carrot, 1);
 		if(rand.nextInt(20) == 0) return new ItemStack(Items.potato, 1);

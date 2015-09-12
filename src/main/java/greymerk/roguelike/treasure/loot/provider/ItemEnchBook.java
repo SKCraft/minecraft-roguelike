@@ -15,6 +15,11 @@ public class ItemEnchBook extends ItemBase{
 
 	@Override
 	public ItemStack getLootItem(Random rand, int level) {
+		ItemStack override = getChestGenItem("enchBook", level, rand);
+		if (override != null) {
+			return override;
+		}
+
 		ItemStack book = new ItemStack(Items.book);
 		Loot.enchantItem(book, rand, Loot.getEnchantLevel(rand, level));
 		return book;

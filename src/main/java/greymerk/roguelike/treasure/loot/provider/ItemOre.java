@@ -20,6 +20,10 @@ public class ItemOre extends ItemBase{
 	}
 	
 	private static ItemStack pickOre(Random rand, int level) {
+		ItemStack override = getChestGenItem("ore", level, rand);
+		if (override != null) {
+			return override;
+		}
 
 		switch(level){
 		

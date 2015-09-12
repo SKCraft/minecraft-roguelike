@@ -13,6 +13,11 @@ public class ItemEnchBonus extends ItemBase{
 
 	@Override
 	public ItemStack getLootItem(Random rand, int level) {
+		ItemStack override = getChestGenItem("enchBonus", level, rand);
+		if (override != null) {
+			return override;
+		}
+
 		if(rand.nextBoolean()) return new ItemStack(Items.experience_bottle, 1 + rand.nextInt(5));
 		return new ItemStack(Items.ender_pearl, 1 + rand.nextInt(2));
 	}

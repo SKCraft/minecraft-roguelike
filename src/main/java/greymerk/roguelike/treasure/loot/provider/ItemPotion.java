@@ -15,7 +15,11 @@ public class ItemPotion extends ItemBase{
 
 	@Override
 	public ItemStack getLootItem(Random rand, int level) {
-		
+		ItemStack override = getChestGenItem("potion", level, rand);
+		if (override != null) {
+			return override;
+		}
+
 		if(level > 2) return PotionMixture.getPotion(rand, PotionMixture.VILE);
 		
 		if(rand.nextInt(10) == 0) return PotionMixture.getBooze(rand);
